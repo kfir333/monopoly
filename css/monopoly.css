@@ -205,6 +205,20 @@ body{
     background-position:center;
 }
 
+.jailed{
+    background-image:url(../images/sad.png);
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-position:center;
+}
+
+.smile{
+    background-image:url(../images/smile.png);
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-position:center;
+}
+
 .board .dice.cell{
     background-color:white;
 }

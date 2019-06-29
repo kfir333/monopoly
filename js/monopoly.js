@@ -88,7 +88,9 @@ Monopoly.handleTurn = function(){
     if (playerCell.is(".available.property")){
         Monopoly.handleBuyProperty(player,playerCell);
     }else if(playerCell.is(".property:not(.available)") && !playerCell.hasClass(player.attr("id"))){
-         Monopoly.handlePayRent(player,playerCell);
+        Monopoly.handlePayRent(player,playerCell);
+    }else if(playerCell.hasClass(player.attr("id"))){
+        player.addClass("smile");
     }else if(playerCell.is(".go-to-jail")){
         Monopoly.handleGoToJail(player);
     }else if(playerCell.is(".chance")){
@@ -250,6 +252,8 @@ Monopoly.handleBuy = function(player,propertyCell,propertyCost){
                     .addClass(player.attr("id"))
                     .attr("data-owner",player.attr("id"))
                     .attr("data-rent",rent);
+
+        player.addClass("smile");
         Monopoly.setNextPlayerTurn();
     }
 };
@@ -332,6 +336,7 @@ Monopoly.isValidInput = function(validate,value){
 }
 
 Monopoly.showErrorMsg = function(){
+    Monopoly.playSound("nomoney");
     $(".popup-page .invalid-error").fadeTo(500,1);
     setTimeout(function(){
             $(".popup-page .invalid-error").fadeTo(500,0);
