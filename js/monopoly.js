@@ -1,6 +1,6 @@
 var Monopoly = {};
 Monopoly.allowRoll = true;
-Monopoly.moneyAtStart = 1000;
+Monopoly.moneyAtStart = 20;
 Monopoly.doubleCounter = 0;
 
 Monopoly.init = function(){
@@ -189,9 +189,9 @@ Monopoly.handleChanceCard = function(player){
 };
 
 Monopoly.handleCommunityCard = function(player){
-    //TODO: implement this method
-    alert("not implemented yet!")
     Monopoly.setNextPlayerTurn();
+    Monopoly.handleChanceCard(player);
+   
 };
 
 
@@ -321,10 +321,10 @@ Monopoly.isValidInput = function(validate,value){
         case "numofplayers":
             if(value > 1 && value <= 4){
                 isValid = true;
-            }
-            //TODO: remove when done
+            }else{
             console.log("the val " + value)
             isValid = false;
+            }
             break;
     }
 
