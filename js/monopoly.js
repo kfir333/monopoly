@@ -145,7 +145,7 @@ Monopoly.setNextPlayerTurn = function(){
 
     if(nextPlayerId == playerId){ 
         Monopoly.setWinner(playerId);
-    }
+    }else{
 
     currentPlayerTurn.removeClass("current-turn");
     var nextPlayer = $(".player#player" + nextPlayerId);
@@ -161,21 +161,24 @@ Monopoly.setNextPlayerTurn = function(){
         Monopoly.setNextPlayerTurn();
         return;
     }
-    
+
     Monopoly.closePopup();
     Monopoly.allowRoll = true;
+    }
 };
 
 Monopoly.setWinner = function(playerId){
     var popup = Monopoly.getPopup("game-over");
     popup.find(".popup-content")
-    .text(`${playerId} is won!`)
-    .append('<br/><button id="ok" class="clickable">Play</button>');
+    .text(`player${playerId} is won!`)
+    .append('<br/><button id="ok" class="clickable">Play Again</button>');
     popup.find("button").unbind("click").bind("click",function(){
         Monopoly.allowRoll = true;
         Monopoly.moneyAtStart = 10;
         Monopoly.doubleCounter = 0;
         Monopoly.isPlayerActiveArr = [];
+        
+        $(".player").remove();
 
         Monopoly.init();  
         Monopoly.closePopup();          
@@ -279,7 +282,7 @@ Monopoly.calculateProperyRent = function(propertyCost){
 
 Monopoly.closeAndNextTurn = function(){
     Monopoly.setNextPlayerTurn();
-    Monopoly.closePopup();
+   // Monopoly.closePopup(); //todo
 };
 
 Monopoly.initPopups = function(){
